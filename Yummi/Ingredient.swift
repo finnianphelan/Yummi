@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+struct Ingredient {
+    let icon: String
+    let name: String
+    let quantity: Float
+    let category: String
+    let expiryDate: String
+    
+    func display() -> String {
+        return """
+Name: \(name)
+Quantity: \(quantity) units
+Category: \(category)
+Expiry Date: \(expiryDate)
+"""
+    }
+}

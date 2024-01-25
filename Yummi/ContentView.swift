@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let banana = Ingredient(icon: "🍌", name: "Banana", quantity: 3.0, category: "Fruit", expiryDate: "Dec  25th")
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(banana.icon)
+            Text(banana.display())
         }
         .padding()
     }
