@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Ingredient {
-    let icon: String
+struct Ingredient: Identifiable {
     let name: String
-    let quantity: Float
+    let quantity: Int
     let category: String
     let expiryDate: String
+    var id: String {name}
     
-    func display() -> String {
+    func displayText() -> String {
         return """
 Name: \(name)
 Quantity: \(quantity) units
