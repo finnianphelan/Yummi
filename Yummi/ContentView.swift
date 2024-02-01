@@ -9,12 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var ingredients = [
-        Ingredient(name: "Banana", quantity: 3, category: "Fruit", expiryDate: "Dec  25th"),
-        Ingredient(name: "Pizza", quantity: 4, category: "Food", expiryDate: "Dec  25th"),
-        Ingredient(name: "Hamburger", quantity: 1, category: "Food", expiryDate: "Dec  25th"),
-        Ingredient(name: "Strawberry", quantity: 12, category: "Fruit", expiryDate: "Dec  25th")
-    ]
+    @State var ingredients: [Ingredient] = []
     
     @State var ingredientIndex = 0
     
@@ -26,19 +21,25 @@ struct ContentView: View {
     var body: some View {
         
         Form {
-            Section {
-                Text(ingredients[ingredientIndex].displayText())
-                
-                Button(
-                    action: {
-                    if ingredientIndex != ingredients.count-1 {
-                        ingredientIndex += 1
-                    } else {
-                        ingredientIndex = 0
-                    }
-                },
-                    label: {Text("Next Ingredient")}
-                )
+            
+            if ingredients.count == 0 {
+                Text("No Ingredients")
+            }
+            else {
+                Section {
+                    Text(ingredients[ingredientIndex].displayText())
+                    
+                    Button(
+                        action: {
+                        if ingredientIndex != ingredients.count-1 {
+                            ingredientIndex += 1
+                        } else {
+                            ingredientIndex = 0
+                        }
+                    },
+                        label: {Text("Next Ingredient")}
+                    )
+                }
             }
 
             Section {
