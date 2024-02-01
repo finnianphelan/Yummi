@@ -17,6 +17,7 @@ struct RecipesView: View {
             ForEach(recipes) { recipe in
                 Section {
                     Text(recipe.name)
+                        .bold()
                     
                     HStack {
                         ForEach(recipe.ingredients) { ingredient in

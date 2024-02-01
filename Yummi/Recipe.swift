@@ -34,7 +34,7 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Eggs", quantity: 2, category: "Cooking", expiryDate: "Jan 12th"),
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
                 ],
-                isFavourite: true,
+                isFavourite: false,
                 rating: 8.0
             ),
             
@@ -45,7 +45,7 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Eggs", quantity: 2, category: "Cooking", expiryDate: "Jan 12th"),
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
                 ],
-                isFavourite: true,
+                isFavourite: false,
                 rating: 7.5
             ),
         ]
