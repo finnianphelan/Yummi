@@ -48,6 +48,17 @@ struct Recipe: Identifiable {
                 isFavourite: false,
                 rating: 7.5
             ),
+            
+            Recipe(
+                name: "Waffles",
+                ingredients: [
+                    Ingredient(name: "Flour", quantity: 2, category: "Cooking", expiryDate: "Jan 12th"),
+                    Ingredient(name: "Eggs", quantity: 2, category: "Cooking", expiryDate: "Jan 12th"),
+                    Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
+                ],
+                isFavourite: true,
+                rating: 9.0
+            ),
         ]
     }
 }

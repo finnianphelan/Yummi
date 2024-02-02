@@ -20,51 +20,69 @@ struct ContentView: View {
     
     var body: some View {
         
-        Form {
-            
-            if ingredients.count == 0 {
-                Text("No Ingredients")
-            }
-            else {
+        NavigationView {
+            Form {
+                
+                if ingredients.count == 0 {
+                    Text("No Ingredients")
+                }
+                else {
+                    Section {
+                        Text(ingredients[ingredientIndex].displayText())
+                        
+                        HStack {
+                            Button(
+                                action: {
+                                if ingredientIndex != ingredients.count-1 {
+                                    ingredientIndex += 1
+                                } else {
+                                    ingredientIndex = 0
+                                }
+                            },
+                                label: {Text("Next Ingredient")}
+                            )
+                            
+                            Spacer()
+                            
+                            if ingredients.count != 0 {
+                                Text("\(ingredientIndex+1)/\(ingredients.count)")
+                            }
+                        }
+                    }
+                }
+
                 Section {
-                    Text(ingredients[ingredientIndex].displayText())
+                    TextField("Name", text: $ingredientName)
+                    HStack {
+                        Text("\(ingredientQuantity)")
+                        Stepper("", value: $ingredientQuantity)
+                        Text("Quantity")
+                    }
+                    
+                    Picker("Category", selection: $ingredientCategory) {
+                        Text("Carbohydrate").tag("Carbohydrate")
+                        Text("Human").tag("Human")
+                        Text("Meat").tag("Meat")
+                        Text("Dairy").tag("Dairy")
+                    }
+                    
+                    TextField("Expiry Date", text: $ingredientExpiryDate)
                     
                     Button(
                         action: {
-                        if ingredientIndex != ingredients.count-1 {
-                            ingredientIndex += 1
-                        } else {
-                            ingredientIndex = 0
-                        }
-                    },
-                        label: {Text("Next Ingredient")}
+                            ingredients.append(Ingredient(name: ingredientName, quantity: ingredientQuantity, category: ingredientCategory, expiryDate: ingredientExpiryDate))
+                            ingredientIndex = ingredients.count-1
+                            
+                            ingredientName = ""
+                            ingredientQuantity = 1
+                            ingredientCategory = ""
+                            ingredientExpiryDate = ""
+                        },
+                        label: {Text("Add New Ingredient")}
                     )
                 }
             }
-
-            Section {
-                TextField("Name", text: $ingredientName)
-                HStack {
-                    Text("\(ingredientQuantity)")
-                    Stepper("", value: $ingredientQuantity)
-                    Text("Quantity")
-                }
-                TextField("Category", text: $ingredientCategory)
-                TextField("Expiry Date", text: $ingredientExpiryDate)
-                
-                Button(
-                    action: {
-                        ingredients.append(Ingredient(name: ingredientName, quantity: ingredientQuantity, category: ingredientCategory, expiryDate: ingredientExpiryDate))
-                        ingredientIndex = ingredients.count-1
-                        
-                        ingredientName = ""
-                        ingredientQuantity = 1
-                        ingredientCategory = ""
-                        ingredientExpiryDate = ""
-                    },
-                    label: {Text("Add New Ingredient")}
-                )
-            }
+            .navigationBarTitle("Add Ingredients", displayMode: .inline)
         }
     }
 }

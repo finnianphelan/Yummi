@@ -11,24 +11,66 @@ struct RecipesView: View {
     
     @State var recipes = Recipe.factoryMethod()
     
+    @State var recipeName = ""
+    @State var recipeQuantity = 1
+    @State var ingredientCategory = ""
+    @State var ingredientExpiryDate = ""
+    
     var body: some View {
         
-        List {
-            ForEach(recipes) { recipe in
+        NavigationView {
+            
+            Form {
+                
                 Section {
-                    Text(recipe.name)
-                        .bold()
-                    
+                    TextField("Name", text: $recipeName)
                     HStack {
-                        ForEach(recipe.ingredients) { ingredient in
-                            Text(ingredient.name)
-                        }
+                        Text("\(recipeQuantity)")
+                        Stepper("", value: $recipeQuantity)
+                        Text("Quantity")
                     }
                     
-                    Text(recipe.isFavourite ? "Favourite" : "Not Favourite")
-                    Text("\(recipe.rating) / 10")
+                    Picker("Category", selection: $ingredientCategory) {
+                        Text("Carbohydrate").tag("Carbohydrate")
+                        Text("Human").tag("Human")
+                        Text("Meat").tag("Meat")
+                        Text("Dairy").tag("Dairy")
+                    }
+                    
+                    TextField("Expiry Date", text: $ingredientExpiryDate)
+                    
+                    Button(
+                        action: {
+                            recipes.append(Recipe(name: recipeName, quantity: recipeQuantity, category: ingredientCategory, expiryDate: ingredientExpiryDate))
+                            
+                            recipeName = ""
+                            recipeQuantity = 1
+                            ingredientCategory = ""
+                            ingredientExpiryDate = ""
+                        },
+                        label: {Text("Add New Recipe")}
+                    )
+                }
+                
+                List {
+                    ForEach(recipes) { recipe in
+                        Section {
+                            Text(recipe.name)
+                                .bold()
+                            
+                            HStack {
+                                ForEach(recipe.recipes) { ingredient in
+                                    Text(ingredient.name)
+                                }
+                            }
+                            
+                            Text(recipe.isFavourite ? "Favourite" : "Not Favourite")
+                            Text("\(recipe.rating) / 10")
+                        }
+                    }
                 }
             }
+            .navigationTitle("Recipes")
         }
     }
 }
