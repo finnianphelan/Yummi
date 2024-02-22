@@ -12,9 +12,9 @@ struct RecipesView: View {
     @State var recipes = Recipe.factoryMethod()
     
     @State var recipeName = ""
-    @State var recipeIngredients: [Ingredient] = []
+    @State var recipeIngredients = ""
     @State var recipeIsFavourite = false
-    @State var recipeRating = 0.0
+    @State var recipeRating = ""
     
     var body: some View {
         
@@ -22,36 +22,45 @@ struct RecipesView: View {
             
             Form {
                 
-                Section {
-                    TextField("Name", text: $recipeName)
-                    
-                    Toggle("Favourite:", isOn: $recipeIsFavourite)
-                    
-                    Button(
-                        action: {
-                            recipes.append(Recipe(name: recipeName, ingredients: recipeIngredients, isFavourite: recipeIsFavourite, rating: recipeRating))
-                            
-                            recipeName = ""
-                            recipeIngredients = ""
-                            recipeIsFavourite = false
-                            recipeRating = 0.0
-                        },
-                        label: {Text("Add New Recipe")}
-                    )
-                }
+//                Section {
+//                    TextField("Name", text: $recipeName)
+//                    
+//                    TextField("Ingredients", text: $recipeIngredients)
+//                    
+//                    Toggle("Favourite:", isOn: $recipeIsFavourite)
+//                    
+//                    TextField("Rating", text: $recipeRating)
+//                    
+//                    Button(
+//                        action: {
+//                            
+//                            let recipeIngredientsArray = $recipeIngredients.components(separatedBy: ", ")
+//                            
+//                            recipes.insert(Recipe(name: recipeName, ingredients: recipeIngredientsArray, isFavourite: recipeIsFavourite, rating: recipeRating), at: 0)
+//                            
+//                            recipeName = ""
+//                            recipeIngredients = ""
+//                            recipeIsFavourite = false
+//                            recipeRating = ""
+//                        },
+//                        label: {Text("Add")}
+//                    )
+//                }
                 
-                List(recipes) { recipe in
-                    Section {
-                        Text(recipe.name)
-                        
-                        HStack {
-                            ForEach(recipe.recipes) { ingredient in
-                                Text(ingredient.name)
+                List {
+                    ForEach(recipes) { recipe in
+                        Section {
+                            Text(recipe.name)
+
+                            VStack {
+                                ForEach(recipe.ingredients) { ingredient in
+                                    Text(ingredient.name)
+                                }
                             }
+
+                            Text(recipe.isFavourite ? "Favourite" : "Not Favourite")
+                            Text("\(recipe.rating) / 10")
                         }
-                        
-                        Text(recipe.isFavourite ? "Favourite" : "Not Favourite")
-                        Text("\(recipe.rating) / 10")
                     }
                 }
             }

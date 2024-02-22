@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F6BFC472B877842005D91EF /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6BFC462B877842005D91EF /* RootTabView.swift */; };
 		8FBC8C762B5FD2B6007D2E66 /* YummiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC8C752B5FD2B6007D2E66 /* YummiApp.swift */; };
-		8FBC8C782B5FD2B6007D2E66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC8C772B5FD2B6007D2E66 /* ContentView.swift */; };
 		8FBC8C7A2B5FD2B8007D2E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FBC8C792B5FD2B8007D2E66 /* Assets.xcassets */; };
 		8FBC8C7D2B5FD2B8007D2E66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FBC8C7C2B5FD2B8007D2E66 /* Preview Assets.xcassets */; };
 		8FBC8C872B5FD2B8007D2E66 /* YummiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC8C862B5FD2B8007D2E66 /* YummiTests.swift */; };
@@ -18,6 +18,8 @@
 		8FBC8CA12B5FD336007D2E66 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC8C9F2B5FD336007D2E66 /* Ingredient.swift */; };
 		8FD1F3C22B690BE700AE3CE5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1F3C12B690BE700AE3CE5 /* Recipe.swift */; };
 		8FD1F3C42B690CB700AE3CE5 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1F3C32B690CB700AE3CE5 /* RecipesView.swift */; };
+		8FFC2D442B72440B00EEFA31 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD1F3C12B690BE700AE3CE5 /* Recipe.swift */; };
+		8FFC2D482B72443400EEFA31 /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFC2D472B72443400EEFA31 /* IngredientsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F6BFC462B877842005D91EF /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		8FBC8C722B5FD2B6007D2E66 /* Yummi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yummi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FBC8C752B5FD2B6007D2E66 /* YummiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummiApp.swift; sourceTree = "<group>"; };
-		8FBC8C772B5FD2B6007D2E66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8FBC8C792B5FD2B8007D2E66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FBC8C7C2B5FD2B8007D2E66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8FBC8C822B5FD2B8007D2E66 /* YummiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YummiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +53,7 @@
 		8FBC8C9F2B5FD336007D2E66 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		8FD1F3C12B690BE700AE3CE5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		8FD1F3C32B690CB700AE3CE5 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
+		8FFC2D472B72443400EEFA31 /* IngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				8FBC8C752B5FD2B6007D2E66 /* YummiApp.swift */,
-				8FBC8C772B5FD2B6007D2E66 /* ContentView.swift */,
-				8FD1F3C32B690CB700AE3CE5 /* RecipesView.swift */,
-				8FBC8C9F2B5FD336007D2E66 /* Ingredient.swift */,
-				8FD1F3C12B690BE700AE3CE5 /* Recipe.swift */,
+				8FFC2D432B7243FE00EEFA31 /* View */,
+				8FFC2D422B7243F800EEFA31 /* Model */,
 				8FBC8C792B5FD2B8007D2E66 /* Assets.xcassets */,
 				8FBC8C7B2B5FD2B8007D2E66 /* Preview Content */,
 			);
@@ -135,6 +136,25 @@
 				8FBC8C922B5FD2B8007D2E66 /* YummiUITestsLaunchTests.swift */,
 			);
 			path = YummiUITests;
+			sourceTree = "<group>";
+		};
+		8FFC2D422B7243F800EEFA31 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8FBC8C9F2B5FD336007D2E66 /* Ingredient.swift */,
+				8FD1F3C12B690BE700AE3CE5 /* Recipe.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8FFC2D432B7243FE00EEFA31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8FFC2D472B72443400EEFA31 /* IngredientsView.swift */,
+				8FD1F3C32B690CB700AE3CE5 /* RecipesView.swift */,
+				8F6BFC462B877842005D91EF /* RootTabView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FBC8C782B5FD2B6007D2E66 /* ContentView.swift in Sources */,
+				8FFC2D482B72443400EEFA31 /* IngredientsView.swift in Sources */,
 				8FBC8C762B5FD2B6007D2E66 /* YummiApp.swift in Sources */,
 				8FD1F3C42B690CB700AE3CE5 /* RecipesView.swift in Sources */,
 				8FBC8CA02B5FD336007D2E66 /* Ingredient.swift in Sources */,
+				8F6BFC472B877842005D91EF /* RootTabView.swift in Sources */,
 				8FD1F3C22B690BE700AE3CE5 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FFC2D442B72440B00EEFA31 /* Recipe.swift in Sources */,
 				8FBC8CA12B5FD336007D2E66 /* Ingredient.swift in Sources */,
 				8FBC8C872B5FD2B8007D2E66 /* YummiTests.swift in Sources */,
 			);
