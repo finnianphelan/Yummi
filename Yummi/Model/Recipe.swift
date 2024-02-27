@@ -11,10 +11,11 @@ struct Recipe: Identifiable {
     let name: String
     let ingredients: [Ingredient]
     var isFavourite: Bool
-    var rating: String
+    var rating: Int
+    let imageFilePath: String
     var id: String {name}
     
-    static func factoryMethod() -> [Recipe] {
+    static var examples: [Recipe] {
         return [
             Recipe(
                 name: "Red Velvet Cake",
@@ -24,7 +25,8 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
                 ],
                 isFavourite: true,
-                rating: "9.5"
+                rating: 9,
+                imageFilePath: "redVelvetCake"
             ),
             
             Recipe(
@@ -35,7 +37,8 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
                 ],
                 isFavourite: false,
-                rating: "8.0"
+                rating: 8,
+                imageFilePath: "redVelvetCake"
             ),
             
             Recipe(
@@ -46,7 +49,8 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
                 ],
                 isFavourite: false,
-                rating: "7.5"
+                rating: 7,
+                imageFilePath: "redVelvetCake"
             ),
             
             Recipe(
@@ -57,7 +61,8 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th"),
                 ],
                 isFavourite: true,
-                rating: "9.0"
+                rating: 9,
+                imageFilePath: "redVelvetCake"
             ),
         ]
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipesView: View {
     
-    @State var recipes = Recipe.factoryMethod()
+    @State var recipes: [Recipe]
     
     @State var recipeName = ""
     @State var recipeIngredients = ""
@@ -50,16 +50,12 @@ struct RecipesView: View {
                 List {
                     ForEach(recipes) { recipe in
                         Section {
-                            Text(recipe.name)
-
-                            VStack {
-                                ForEach(recipe.ingredients) { ingredient in
-                                    Text(ingredient.name)
-                                }
+                            NavigationLink(destination: RecipeItemView(recipe: recipe)) {
+                                Text(recipe.name)
+                                Text("\(recipe.rating) / 10")
+                                Image(systemName: recipe.isFavourite ? "star.fill" : "star")
+                                    .foregroundColor(.yellow)
                             }
-
-                            Text(recipe.isFavourite ? "Favourite" : "Not Favourite")
-                            Text("\(recipe.rating) / 10")
                         }
                     }
                 }
@@ -70,5 +66,5 @@ struct RecipesView: View {
 }
 
 #Preview {
-    RecipesView()
+    RecipesView(recipes: Recipe.examples)
 }
