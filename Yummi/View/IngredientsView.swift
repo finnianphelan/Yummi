@@ -9,34 +9,27 @@ import SwiftUI
 
 struct IngredientsView: View {
     
-    @State var ingredients: [Ingredient] = []
-    
-    @State var ingredientIndex = 0
-    
-    @State var ingredientName = ""
-    @State var ingredientQuantity = 1
-    @State var ingredientCategory = ""
-    @State var ingredientExpiryDate = ""
+    @State var ingredientsViewModel = IngredientsViewModel()
     
     var body: some View {
         
         NavigationView {
             Form {
                 
-                if ingredients.count == 0 {
+                if ingredientsViewModel.ingredients.count == 0 {
                     Text("No Ingredients")
                 }
                 else {
                     Section {
-                        Text(ingredients[ingredientIndex].displayText())
+                        Text(ingredientsViewModel.ingredients[ingredientsViewModel.ingredientIndex].displayText(includeTitle: true))
                         
                         HStack {
                             Button(
                                 action: {
-                                if ingredientIndex != ingredients.count-1 {
-                                    ingredientIndex += 1
+                                    if ingredientsViewModel.ingredientIndex != ingredientsViewModel.ingredients.count-1 {
+                                        ingredientsViewModel.ingredientIndex += 1
                                 } else {
-                                    ingredientIndex = 0
+                                    ingredientsViewModel.ingredientIndex = 0
                                 }
                             },
                                 label: {Text("Next Ingredient")}
@@ -44,14 +37,14 @@ struct IngredientsView: View {
                             
                             Spacer()
                             
-                            if ingredients.count != 0 {
-                                Text("\(ingredientIndex+1)/\(ingredients.count)")
+                            if ingredientsViewModel.ingredients.count != 0 {
+                                Text("\(ingredientsViewModel.ingredientIndex+1)/\(ingredientsViewModel.ingredients.count)")
                             }
                         }
                     }
                     .contextMenu {
                         Button {
-                            ingredients.remove(at: ingredientIndex)
+                            ingredientsViewModel.ingredients.remove(at: ingredientsViewModel.ingredientIndex)
                         } label: {
                             Label("Delete", systemImage: "trash")
                                 .tint(.red)
@@ -59,36 +52,49 @@ struct IngredientsView: View {
                     }
                 }
 
-                Section {
-                    TextField("Name", text: $ingredientName)
-                    HStack {
-                        Text("\(ingredientQuantity)")
-                        Stepper("", value: $ingredientQuantity)
-                        Text("Quantity")
-                    }
-                    
-                    Picker("Category", selection: $ingredientCategory) {
-                        Text("Carbohydrate").tag("Carbohydrate")
-                        Text("Human").tag("Human")
-                        Text("Meat").tag("Meat")
-                        Text("Dairy").tag("Dairy")
-                    }
-                    
-                    TextField("Expiry Date", text: $ingredientExpiryDate)
-                    
-                    Button(
-                        action: {
-                            ingredients.append(Ingredient(name: ingredientName, quantity: ingredientQuantity, category: ingredientCategory, expiryDate: ingredientExpiryDate))
-                            ingredientIndex = ingredients.count-1
-                            
-                            ingredientName = ""
-                            ingredientQuantity = 1
-                            ingredientCategory = ""
-                            ingredientExpiryDate = ""
-                        },
-                        label: {Text("Add New Ingredient")}
-                    )
+                Button("Add New Ingredient") {
+                    ingredientsViewModel.showingIngredientsForm.toggle()
                 }
+                .sheet(isPresented: $ingredientsViewModel.showingIngredientsForm) {
+                    Form {
+                        TextField("Name", text: $ingredientsViewModel.ingredientName)
+                        HStack {
+                            Text("\(ingredientsViewModel.ingredientQuantity)")
+                            Stepper("", value: $ingredientsViewModel.ingredientQuantity)
+                            Text("Quantity")
+                        }
+                        
+                        Picker("Category", selection: $ingredientsViewModel.ingredientCategory) {
+                            Text("Carbohydrate").tag("Carbohydrate")
+                            Text("Human").tag("Human")
+                            Text("Meat").tag("Meat")
+                            Text("Dairy").tag("Dairy")
+                        }
+                        
+                        TextField("Expiry Date", text: $ingredientsViewModel.ingredientExpiryDate)
+                        
+                        Button(
+                            action: {
+                                ingredientsViewModel.addNewIngredient()
+                                ingredientsViewModel.showingIngredientsForm.toggle()
+                            },
+                            label: {Text("Add New Ingredient")}
+                        )
+                    }
+                }
+                
+                Section("All Ingredients") {
+                    ForEach(ingredientsViewModel.categories) { category in
+                        Section {
+                            ForEach(ingredientsViewModel.ingredients) { ingredient in
+                                if ingredient.category == category {
+                                    Text(ingredientsViewModel.ingredients[ingredientsViewModel.ingredientIndex].displayText(includeTitle: false))
+                                }
+                            }
+                        }
+                    }
+                }
+                
             }
             .navigationBarTitle("Add Ingredients", displayMode: .inline)
         }

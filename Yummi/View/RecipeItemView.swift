@@ -28,15 +28,13 @@ struct RecipeItemView: View {
                 
                 RatingView(recipe: recipe, type: "heart", color: .red)
                 
-                Section {
-                    Text("Ingredients")
-                        .bold()
+                Section(content: {
                     VStack {
                         ForEach(recipe.ingredients) { ingredient in
                             Text(ingredient.name)
                         }
                     }
-                }
+                }, header: {Text("Ingredients")})
             }
             .navigationTitle(recipe.name)
         }

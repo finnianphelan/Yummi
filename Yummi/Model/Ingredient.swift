@@ -14,12 +14,20 @@ struct Ingredient: Identifiable {
     let expiryDate: String
     var id: String {name}
     
-    func displayText() -> String {
-        return """
+    func displayText(includeTitle: Bool) -> String {
+        if includeTitle {
+            return """
 Name: \(name)
 Quantity: \(quantity) units
 Category: \(category)
 Expiry Date: \(expiryDate)
 """
+        } else {
+            return """
+Quantity: \(quantity) units
+Category: \(category)
+Expiry Date: \(expiryDate)
+"""
+        }
     }
 }
