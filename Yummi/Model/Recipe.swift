@@ -25,7 +25,7 @@ struct Recipe: Identifiable {
                     Ingredient(name: "Milk", quantity: 2, category: "Dairy", expiryDate: "Jan 12th")
                 ],
                 isFavourite: true,
-                rating: 9,
+                rating: 3,
                 imageFilePath: "redVelvetCake"
             ),
             

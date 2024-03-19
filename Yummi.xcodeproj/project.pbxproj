@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F1A6E6C2B8DEEAA007D6099 /* RecipeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A6E6B2B8DEEAA007D6099 /* RecipeItemView.swift */; };
 		8F1A6E6E2B8DF666007D6099 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A6E6D2B8DF665007D6099 /* RatingView.swift */; };
+		8F1F349A2BA9A7D700C83F76 /* RecipesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F34992BA9A7D700C83F76 /* RecipesViewModel.swift */; };
 		8F6BFC472B877842005D91EF /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6BFC462B877842005D91EF /* RootTabView.swift */; };
 		8FBC8C762B5FD2B6007D2E66 /* YummiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBC8C752B5FD2B6007D2E66 /* YummiApp.swift */; };
 		8FBC8C7A2B5FD2B8007D2E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FBC8C792B5FD2B8007D2E66 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		8F1A6E6B2B8DEEAA007D6099 /* RecipeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeItemView.swift; sourceTree = "<group>"; };
 		8F1A6E6D2B8DF665007D6099 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		8F1F34992BA9A7D700C83F76 /* RecipesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewModel.swift; sourceTree = "<group>"; };
 		8F6BFC462B877842005D91EF /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		8FBC8C722B5FD2B6007D2E66 /* Yummi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yummi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FBC8C752B5FD2B6007D2E66 /* YummiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummiApp.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD02C222B90B44700BD6E82 /* IngredientsViewModel.swift */,
+				8F1F34992BA9A7D700C83F76 /* RecipesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			files = (
 				8F1A6E6C2B8DEEAA007D6099 /* RecipeItemView.swift in Sources */,
 				8FFC2D482B72443400EEFA31 /* IngredientsView.swift in Sources */,
+				8F1F349A2BA9A7D700C83F76 /* RecipesViewModel.swift in Sources */,
 				8FD02C232B90B44700BD6E82 /* IngredientsViewModel.swift in Sources */,
 				8FBC8C762B5FD2B6007D2E66 /* YummiApp.swift in Sources */,
 				8F1A6E6E2B8DF666007D6099 /* RatingView.swift in Sources */,

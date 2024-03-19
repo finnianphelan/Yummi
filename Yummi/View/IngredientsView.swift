@@ -9,11 +9,11 @@ import SwiftUI
 
 struct IngredientsView: View {
     
-    @State var ingredientsViewModel = IngredientsViewModel()
+    @State var ingredientsViewModel = IngredientsViewModel.shared
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             Form {
                 
                 if ingredientsViewModel.ingredients.count == 0 {
@@ -51,52 +51,41 @@ struct IngredientsView: View {
                         }
                     }
                 }
-
-                Button("Add New Ingredient") {
-                    ingredientsViewModel.showingIngredientsForm.toggle()
-                }
-                .sheet(isPresented: $ingredientsViewModel.showingIngredientsForm) {
-                    Form {
-                        TextField("Name", text: $ingredientsViewModel.ingredientName)
-                        HStack {
-                            Text("\(ingredientsViewModel.ingredientQuantity)")
-                            Stepper("", value: $ingredientsViewModel.ingredientQuantity)
-                            Text("Quantity")
-                        }
-                        
-                        Picker("Category", selection: $ingredientsViewModel.ingredientCategory) {
-                            Text("Carbohydrate").tag("Carbohydrate")
-                            Text("Human").tag("Human")
-                            Text("Meat").tag("Meat")
-                            Text("Dairy").tag("Dairy")
-                        }
-                        
-                        TextField("Expiry Date", text: $ingredientsViewModel.ingredientExpiryDate)
-                        
-                        Button(
-                            action: {
-                                ingredientsViewModel.addNewIngredient()
-                                ingredientsViewModel.showingIngredientsForm.toggle()
-                            },
-                            label: {Text("Add New Ingredient")}
-                        )
-                    }
-                }
-                
-                Section("All Ingredients") {
-                    ForEach(ingredientsViewModel.categories) { category in
-                        Section {
-                            ForEach(ingredientsViewModel.ingredients) { ingredient in
-                                if ingredient.category == category {
-                                    Text(ingredientsViewModel.ingredients[ingredientsViewModel.ingredientIndex].displayText(includeTitle: false))
-                                }
-                            }
-                        }
-                    }
-                }
-                
             }
             .navigationBarTitle("Add Ingredients", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        ingredientsViewModel.showingIngredientsForm.toggle()
+                    }, label: {Image(systemName: "plus")})
+                    .sheet(isPresented: $ingredientsViewModel.showingIngredientsForm) {
+                        Form {
+                            TextField("Name", text: $ingredientsViewModel.ingredientName)
+                            HStack {
+                                Text("\(ingredientsViewModel.ingredientQuantity)")
+                                Stepper("", value: $ingredientsViewModel.ingredientQuantity)
+                                Text("Quantity")
+                            }
+                            
+                            Picker("Category", selection: $ingredientsViewModel.ingredientCategory) {
+                                ForEach(ingredientsViewModel.categories, id: \.self) { category in
+                                    Text(category).tag(category)
+                                }
+                            }
+                            
+                            TextField("Expiry Date", text: $ingredientsViewModel.ingredientExpiryDate)
+                            
+                            Button(
+                                action: {
+                                    ingredientsViewModel.addNewIngredient()
+                                    ingredientsViewModel.showingIngredientsForm = false
+                                },
+                                label: {Text("Add New Ingredient")}
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }

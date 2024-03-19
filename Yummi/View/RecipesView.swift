@@ -9,46 +9,15 @@ import SwiftUI
 
 struct RecipesView: View {
     
-    @State var recipes: [Recipe]
-    
-    @State var recipeName = ""
-    @State var recipeIngredients = ""
-    @State var recipeIsFavourite = false
-    @State var recipeRating = ""
+    @State var recipesViewModel = RecipesViewModel.shared
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             
             Form {
-                
-//                Section {
-//                    TextField("Name", text: $recipeName)
-//                    
-//                    TextField("Ingredients", text: $recipeIngredients)
-//                    
-//                    Toggle("Favourite:", isOn: $recipeIsFavourite)
-//                    
-//                    TextField("Rating", text: $recipeRating)
-//                    
-//                    Button(
-//                        action: {
-//                            
-//                            let recipeIngredientsArray = $recipeIngredients.components(separatedBy: ", ")
-//                            
-//                            recipes.insert(Recipe(name: recipeName, ingredients: recipeIngredientsArray, isFavourite: recipeIsFavourite, rating: recipeRating), at: 0)
-//                            
-//                            recipeName = ""
-//                            recipeIngredients = ""
-//                            recipeIsFavourite = false
-//                            recipeRating = ""
-//                        },
-//                        label: {Text("Add")}
-//                    )
-//                }
-                
                 List {
-                    ForEach(recipes) { recipe in
+                    ForEach(recipesViewModel.recipes) { recipe in
                         Section {
                             NavigationLink(destination: RecipeItemView(recipe: recipe)) {
                                 Text(recipe.name)
@@ -61,10 +30,48 @@ struct RecipesView: View {
                 }
             }
             .navigationTitle("Recipes")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        recipesViewModel.showingRecipesForm.toggle()
+                    }, label: {Image(systemName: "plus")})
+                    .sheet(isPresented: $recipesViewModel.showingRecipesForm) {
+                        Form {
+                            TextField("Name", text: $recipesViewModel.recipeName)
+        
+                            TextField("Ingredients", text: $recipesViewModel.recipeIngredients)
+        
+                            Toggle("Favourite:", isOn: $recipesViewModel.recipeIsFavourite)
+        
+                            TextField("Rating", text: $recipesViewModel.recipeRating)
+        
+                            Button(
+                                action: {
+        
+                                    let recipeIngredientsArray = recipesViewModel.recipeIngredients.split(separator: ", ")
+                                    var recipeIngredientsArrayTyped: [Ingredient] = []
+                                    for recipeIngredient in recipeIngredientsArray {
+                                        recipeIngredientsArrayTyped.append(Ingredient(name: String(recipeIngredient), quantity: 1, category: "Carbohydrate", expiryDate: "Dec 25th"))
+                                    }
+
+                                    recipesViewModel.recipes.append(Recipe(name: recipesViewModel.recipeName, ingredients: recipeIngredientsArrayTyped, isFavourite: recipesViewModel.recipeIsFavourite, rating: Int(recipesViewModel.recipeRating) ?? 0, imageFilePath: "redVelvetCake"))
+        
+                                    recipesViewModel.recipeName = ""
+                                    recipesViewModel.recipeIngredients = ""
+                                    recipesViewModel.recipeIsFavourite = false
+                                    recipesViewModel.recipeRating = ""
+                                    recipesViewModel.showingRecipesForm = false
+                                },
+                                label: {Text("Add")}
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
-    RecipesView(recipes: Recipe.examples)
+    RecipesView()
 }

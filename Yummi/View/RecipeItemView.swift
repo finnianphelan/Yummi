@@ -33,6 +33,7 @@ struct RecipeItemView: View {
                         ForEach(recipe.ingredients) { ingredient in
                             Text(ingredient.name)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }, header: {Text("Ingredients")})
             }

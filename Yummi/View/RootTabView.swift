@@ -15,7 +15,7 @@ struct RootTabView: View {
                     Image(systemName: "carrot")
                     Text("Ingredients")
                 }
-            RecipesView(recipes: Recipe.examples)
+            RecipesView()
                 .tabItem {
                     Image(systemName: "doc")
                     Text("Recipes")

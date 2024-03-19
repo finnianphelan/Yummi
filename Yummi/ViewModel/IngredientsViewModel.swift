@@ -9,6 +9,9 @@ import Foundation
 
 @Observable
 class IngredientsViewModel {
+    
+    static var shared = IngredientsViewModel()
+    
     var ingredients: [Ingredient] = []
     
     var ingredientIndex = 0
